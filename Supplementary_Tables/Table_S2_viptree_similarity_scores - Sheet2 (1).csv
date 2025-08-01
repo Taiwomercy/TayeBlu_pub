@@ -1,0 +1,48 @@
+Sequence_ID,length,taxid,name,group,host_group,hosttype,score,SG,%.mean.idt,%.len
+TayeBlu,59885,-,user_virus4,-,Pseudomonadota,Prokaryote,40797,1,100,100
+OR508996.1,58539,-,user_virus1,-,Pseudomonadota,Prokaryote,26611,0.6652,90.8,73
+BK048414.1,58886,-,user_virus2,-,-,-,26067,0.6481,86.7,74.2
+MH622927.1,58279,-,user_virus3,-,-,-,18801.5,0.476,71,64.6
+NC_047786,53263,1913114,Salmonella phage vB_SenS_Sasha,dsDNA,Pseudomonadota,Prokaryote,6975,0.171,54,31.3
+NC_025443,52869,1113547,Salmonella phage 9NA,dsDNA,Pseudomonadota,Prokaryote,6777,0.1661,53.3,30.8
+NC_042062,41391,1173760,Salmonella phage SP069,dsDNA,Pseudomonadota,Prokaryote,6032,0.1479,55.6,26.6
+NC_071011,56858,2900314,Klebsiella phage vB_KpnS-Carvaje,dsDNA,Pseudomonadota,Prokaryote,5856.5,0.1436,51.9,27.8
+NC_041925,54836,1969841,Proteus phage VB_PmiS-Isfahan,dsDNA,Pseudomonadota,Prokaryote,5420.5,0.1329,47.6,27.7
+NC_071133,49370,2530028,Klebsiella phage vB_KpnM_FZ14,dsDNA,Pseudomonadota,Prokaryote,2874.5,0.0705,48.7,12.2
+NC_071134,48129,2894801,Klebsiella phage vB_KpnM_JustaPhage,dsDNA,Pseudomonadota,Prokaryote,2796,0.0685,48.5,12.8
+NC_071130,47333,2849972,Klebsiella phage BUCT_47333,dsDNA,Pseudomonadota,Prokaryote,2699.5,0.0662,48.9,12.5
+NC_071128,49169,2686208,Klebsiella phage vB_KpnM_15-38_KLPPOU148,dsDNA,Pseudomonadota,Prokaryote,2684.5,0.0658,51.8,12.2
+NC_071132,50707,2861002,Klebsiella phage Geezett,dsDNA,Pseudomonadota,Prokaryote,2648.5,0.0649,49.8,11.3
+NC_041900,47405,1912321,Klebsiella phage vB_KpnM_KpV52,dsDNA,Pseudomonadota,Prokaryote,2622,0.0643,48,12.5
+NC_071135,47129,2776813,Klebsiella phage MEW1,dsDNA,Pseudomonadota,Prokaryote,2550.5,0.0625,49.6,11.8
+NC_071140,48021,2935866,Escherichia phage ZCEC13,dsDNA,Pseudomonadota,Prokaryote,2530,0.062,49.2,12
+NC_071137,49482,2562174,Klebsiella phage vB_KpnM_IME346,dsDNA,Pseudomonadota,Prokaryote,2507,0.0615,49.5,11.8
+NC_071138,47797,2047786,Klebsiella phage 1611E-K2-1,dsDNA,Pseudomonadota,Prokaryote,2462.5,0.0604,46.5,12.1
+NC_071129,49532,2849971,Klebsiella phage BUCT_49532,dsDNA,Pseudomonadota,Prokaryote,2456.5,0.0602,45.7,11.9
+NC_021342,43378,1325372,Edwardsiella phage PEi21,dsDNA,Pseudomonadota,Prokaryote,2406.5,0.059,50.2,11.2
+NC_071141,49371,2973661,Klebsiella phage SBP,dsDNA,Pseudomonadota,Prokaryote,2354.5,0.0577,50.8,10.8
+NC_044940,48659,2053078,Pectobacterium phage PEAT2,dsDNA,Pseudomonadota,Prokaryote,2296.5,0.0563,49.4,11.1
+NC_071131,48833,2874879,Klebsiella phage VLCpiM12a,dsDNA,Pseudomonadota,Prokaryote,2296.5,0.0563,48.4,11.3
+NC_042041,47760,2041212,Klebsiella phage vB_KpnM_KpV79,dsDNA,Pseudomonadota,Prokaryote,2278,0.0558,49.1,10.8
+NC_071136,48837,2961985,Klebsiella phage pKp383,dsDNA,Pseudomonadota,Prokaryote,2196,0.0538,47.3,10.8
+NC_020204,48814,1236000,Klebsiella phage JD001,dsDNA,Pseudomonadota,Prokaryote,2184,0.0535,46,10.9
+NC_071139,48245,2759197,Klebsiella phage vB_KleM_KB2,dsDNA,Pseudomonadota,Prokaryote,2148,0.0527,46,10.8
+NC_020082,42746,1264700,Edwardsiella phage MSW-3,dsDNA,Pseudomonadota,Prokaryote,1695,0.0415,48.4,8.3
+NC_048193,61600,2508206,Escherichia phage PTXU04,dsDNA,Pseudomonadota,Prokaryote,1655,0.0406,55.2,6.8
+NC_019518,44485,1127518,Vibrio phage vB_VchM-138,dsDNA,Pseudomonadota,Prokaryote,1579,0.0387,49.7,7.6
+KJ572844,44395,1500712,Vibrio phage 24,dsDNA,Pseudomonadota,Prokaryote,1531,0.0375,50.3,7.2
+NC_019457,44492,10689,Vibrio phage CP-T1,dsDNA,Pseudomonadota,Prokaryote,1531,0.0375,50.3,7.2
+KJ021043,35560,1481110,Klebsiella phage Kpn112,dsDNA,Pseudomonadota,Prokaryote,1489,0.0365,45.5,7.7
+NC_023566,56024,1458697,Rhizobium phage vB_RglS_P106B,dsDNA,Pseudomonadota,Prokaryote,1474.5,0.0361,47.1,7.6
+NC_019519,69391,1161931,Agrobacterium phage 7-7-1,dsDNA,Pseudomonadota,Prokaryote,1076.5,0.0264,43.7,5.9
+NC_069146,42701,2024312,Salmonella phage St162,dsDNA,Pseudomonadota,Prokaryote,1069,0.0262,49.3,5.3
+NC_041958,63513,1682380,Roseobacter phage RDJL Phi 2,dsDNA,Pseudomonadota,Prokaryote,1026.5,0.0252,40.4,6.2
+NC_015466,62668,562742,Roseobacter phage RDJL Phi 1,dsDNA,Pseudomonadota,Prokaryote,1016.5,0.0249,41,5.9
+NC_025463,49640,1458862,Shewanella sp. phage 1/44,dsDNA,-,Prokaryote,953.5,0.0234,41.6,5.5
+NC_073322,42145,2144178,Escherichia phage vB_EcoS-Ro145c2YLVW,dsDNA,Pseudomonadota,Prokaryote,873.5,0.0214,43.8,4.8
+NC_073188,43620,2886209,Salmonella phage vB_SenS_S532,dsDNA,Pseudomonadota,Prokaryote,839,0.0206,43.7,4.8
+NC_005886,47399,279530,Burkholderia phage BcepB1A,dsDNA,Pseudomonadota,Prokaryote,838.5,0.0206,38.9,5.2
+NC_073325,45566,2681674,Escherichia phage vB_EcoS_XY1,dsDNA,Pseudomonadota,Prokaryote,842,0.0206,48.5,3.7
+NC_073187,42894,2603848,Salmonella phage vB_SenS-EnJE1,dsDNA,Pseudomonadota,Prokaryote,838,0.0205,43.3,4.8
+NC_073324,45176,2865787,Escherichia phage vB_EcoS-22664BS2,dsDNA,Pseudomonadota,Prokaryote,833,0.0204,50.7,3.9
+NC_071003,47816,2894794,Enterobacter phage vB_EclS_CobraSix,dsDNA,Pseudomonadota,Prokaryote,821,0.0201,54.7,3.6
