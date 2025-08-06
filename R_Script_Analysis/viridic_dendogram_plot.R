@@ -1,4 +1,4 @@
-# Script adapted and customized from viridic R plotting script
+# Script adapted and customized from 03_viridic_heatmap.R script (https://github.com/CristinaMoraru/VIRIDIC/blob/main/VIRIDIC/stand_alone/viridic_scripts/03_viridic_heatmap.R)
 
 #install.packages("systemfonts")
 #install.packages("dplyr")
