@@ -1,0 +1,245 @@
+---
+title: "Taxonomy"
+output: html_document
+date: "2025-04-14"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Analyse vcontact3 assignment file
+```{r}
+taxa_ICTV <- read.csv("")
+
+TayeBlu_ICTV <- taxa_ICTV[taxa_ICTV$Genome == "TayeBlu_reordered", ]
+
+# Find all phages in the same family as TayeBlu
+Taye_ICTVrealm <- TayeBlu_ICTV$realm_prediction  
+Taye_ICTVrealm
+#"Duplodnaviria"
+
+#Get all phages in the same family
+realm_ICTVmembers <- taxa_ICTV %>%
+  filter(realm_prediction ==  "Duplodnaviria") %>%
+  select(Genome, Size_Kb, Proteins, Reference)
+print(realm_ICTVmembers)
+#5,381 
+
+# Find all phages in the same family as TayeBlu
+Taye_ICTVkingdom <- TayeBlu_ICTV$kingdom_prediction  
+Taye_ICTVkingdom
+#"Heunggongvirae"
+
+#Get all phages in the same family
+kingdom_ICTVmembers <- taxa_ICTV %>%
+  filter(kingdom_prediction ==  "Heunggongvirae") %>%
+  select(Genome, Size_Kb, Proteins, Reference)
+print(kingdom_ICTVmembers)
+#5,378
+
+# Find all phages in the same family as TayeBlu
+Taye_ICTVphylum <- TayeBlu_ICTV$phylum_prediction  
+Taye_ICTVphylum
+#"Uroviricota"
+
+#Get all phages in the same family
+phylum_ICTVmembers <- taxa_ICTV %>%
+  filter(phylum_prediction ==  "Uroviricota") %>%
+  select(Genome, Size_Kb, Proteins, Reference)
+print(phylum_ICTVmembers)
+#5,378
+
+# Find all phages in the same family as TayeBlu
+Taye_ICTVclass <- TayeBlu_ICTV$class_prediction  # Changed from family..prediction.
+Taye_ICTVclass
+"Caudoviricetes"
+
+#Get all phages in the same family
+class_ICTVmembers <- taxa_ICTV %>%
+  filter(class_prediction ==  "Caudoviricetes") %>%
+  select(Genome, Size_Kb, Proteins, Reference)
+print(class_ICTVmembers)
+#5,378
+
+# Find all phages in the same family as TayeBlu
+Taye_ICTVorder <- TayeBlu_ICTV$order_prediction  
+Taye_ICTVorder
+#"novel_order_21_of_Caudoviricetes"
+
+#Get all phages in the same family
+order_ICTVmembers <- taxa_ICTV %>%
+  filter(order_prediction ==  "novel_order_21_of_Caudoviricetes") %>%
+  select(Genome, Size_Kb, Proteins, Reference)
+print(order_ICTVmembers)
+#534
+
+# Find all phages in the same family as TayeBlu
+Taye_ICTVfamily <- TayeBlu_ICTV$family_prediction  # Changed from family..prediction.
+Taye_ICTVfamily
+# "novel_family_3_of_novel_order_21_of_Caudoviricetes"
+
+#Get all phages in the same family
+family_ICTVmembers <- taxa_ICTV %>%
+  filter(family_prediction ==  "novel_family_3_of_novel_order_21_of_Caudoviricetes") %>%
+  select(Genome, Size_Kb, Proteins, Reference)
+print(family_ICTVmembers)
+#9
+
+Taye_ICTVsubfamily <- TayeBlu_ICTV$subfamily_prediction
+Taye_ICTVsubfamily
+# "novel_subfamily_0_of_novel_family_3_of_novel_order_21_of_Caudoviricetes"
+
+#Get all phages in the same subfamily
+subfamily_ICTVmembers <- taxa_ICTV %>%
+  filter(subfamily_prediction == "novel_subfamily_0_of_novel_family_3_of_novel_order_21_of_Caudoviricetes") %>%
+  select(Genome, Size_Kb, Proteins, Reference)
+print(subfamily_ICTVmembers)
+#4
+
+Taye_ICTVgenus <- TayeBlu_ICTV$genus_prediction
+Taye_ICTVgenus
+# "novel_genus_0_of_novel_subfamily_0_of_novel_family_3_of_novel_order_21_of_Caudoviricetes"
+
+#Get all phages in the same genus
+genus_ICTVmembers <- taxa_ICTV %>%
+  filter(genus_prediction == "novel_genus_0_of_novel_subfamily_0_of_novel_family_3_of_novel_order_21_of_Caudoviricetes") %>%
+  select(Genome, Reference, Size_Kb, Proteins)
+print(genus_ICTVmembers)
+#3
+
+```
+
+#Taxon count plot
+```{r}
+
+# Load required libraries
+library(ggplot2)
+library(dplyr)
+
+font_family = "Avenir Next Condensed"
+
+# Create a data frame for the taxonomic hierarchy points
+hierarchy_points <- data.frame(
+  Level = c("Realm", "Phylum", "Class", "Order", "Family", "Sub_family", "Genus"),
+  Position = 1:7,
+  Value = c(5381, 5378, 5378, 534, 9, 4, 3),
+  Label = c("Duplodnaviria", "Urovicota", "Caudoviricetes", "novel_order_21", 
+             "novel_family_3", "novel_subfamily_0", "novel_genus_0"),
+  Color = c(rep("lightblue", 3), rep("lightcoral", 4))
+)
+
+
+# Create a data frame for the area plot that matches the exact values
+area_data <- data.frame(
+  Position = c(1, 1, 3, 4, 5, 6, 7, 7),
+  Value = c(0, 5381, 5378, 534, pmax(9, 12), pmax(4, 2), pmax(3, 1), 0), #Adjust the cyan area coverage for those less than 10 for visual purpose only
+  Group = "Members"
+)
+
+# Increase y-axis range to give more room at the top
+y_max <- 8600
+
+# Create spacing for the taxonomic labels (ladder-like format)
+label_y_positions <- c(7300, 6750, 6200, 5400, 4700, 4000, 3300)
+
+# Point size for calculating circle edge
+point_size <- 7.5  # Half of the original 15 size
+
+# Create the plot
+p <- ggplot() +
+  # Add the area plot with exact values
+  geom_area(data = area_data, aes(x = Position, y = Value), 
+            fill = "#5f8575", alpha = 0.8) +
+ 
+   # Add the connecting lines
+  geom_segment(data = hierarchy_points[-7,], 
+               aes(x = Position, xend = Position + 1, 
+                   y = 7700, yend = 7700),
+               color = "#5f8575", size = 1.5) +
+  
+  # Add the points
+  geom_point(data = hierarchy_points, 
+             aes(x = Position, y = 7700, fill = Color),
+             size = 15, shape = 21, color = "black", stroke = 1) +
+  
+  # Add the taxonomy labels at the top
+  geom_text(data = hierarchy_points, 
+            aes(x = Position, y = 7550, label = Level),
+            vjust = -2.5, size = 6, fontface = "bold", family = font_family) +
+  
+  # Dashed lines from circle edge to before text
+  geom_segment(data = hierarchy_points, 
+               aes(x = Position, xend = Position, 
+                   y = 7700 - 350, yend = label_y_positions + 0),
+               linetype = "dashed", size = 0.5) +
+  
+  # Dashed lines from after text to the area plot value
+  geom_segment(data = hierarchy_points, 
+               aes(x = Position, xend = Position, 
+                   y = label_y_positions - 500, yend = pmax(Value, 50)),
+               linetype = "dashed", size = 0.5) +
+  
+  # Add taxonomic name labels without dashed line passing through them
+  geom_text(data = hierarchy_points, 
+            aes(x = Position, y = label_y_positions - 250, label = Label),
+            vjust = 0.5, hjust = 0.5, size = 6, family = font_family) +
+  
+  # Add count labels at their precise y-axis values, closer to the dashed line
+  geom_text(data = hierarchy_points, 
+            aes(x = Position, y = pmax(Value, 50), label = paste("n =", Value)),
+            vjust = -0.1, hjust = -0.05, size = 6, fontface = "bold", family = font_family) +
+  
+  # Set y-axis label
+  ylab("Members identified by vCONTACT3") +
+  xlab("Taxonomic classification") +
+  
+  # Set the y-axis limits with more room at the top
+ scale_y_continuous(limits = c(0, 8000), breaks = c(0, 3000, 6000)) +
+  
+  # Remove x-axis ticks and labels
+  scale_x_continuous(limits = c(0.9, 7.5), breaks = NULL) +
+  
+  
+  # Set custom colors for the points
+  scale_fill_identity() +
+  
+  # Set theme with adjustments to make grid lines grey and move axis labels closer
+  theme_minimal() +
+  theme(
+    # Change grid lines to grey instead of white
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_blank(),
+    
+    # Move axis titles closer
+    axis.title.x = element_text(size = 18, margin = margin(t = 2), vjust = 4, family = font_family), # reduced from t = 20
+    axis.title.y = element_text(size = 18, margin = margin(r = 5), family = font_family),  # added right margin
+    
+    # Move axis text closer to axis lines
+    axis.text.y = element_text(margin = margin(r = 0), family = font_family, size = 14),
+    
+    # Add only x-axis line for better visibility
+    axis.line.x = element_line(color = "grey50", size = 0.5),
+    axis.line.y = element_blank(),
+   
+     # Add y-axis ticks
+    axis.ticks.y = element_line(color = "black", size = 0.5),
+    axis.ticks.length.y = unit(0.2, "cm"),
+    
+    # Apply font to all text elements
+  text = element_text(family = font_family),
+  
+    # Reduce plot margins to bring everything closer
+    plot.margin = margin(t = 5, r = 20, b = 0, l = 10),
+  # Remove panel border
+    panel.border = element_blank()
+  )
+
+# Display the plot
+p
+# Save the plot
+ggsave("taxonomy_plot.png", plot = p, width = 12, height = 6.5, dpi = 300)
+
+```
+
