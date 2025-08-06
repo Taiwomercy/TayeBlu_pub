@@ -16,10 +16,10 @@ library(circlize)
 library(grid)
 library(dendextend)
 
-setwd("~/Downloads/04_VIRIDIC_out")
+setwd("~/Downloads/04_VIRIDIC_outnw")
 
 # Path to your VIRIDIC output directory
-viridic_out <- "~/Downloads/04_VIRIDIC_out"
+viridic_out <- "~/Downloads/04_VIRIDIC_outnw"
 
 font_family = "Avenir Next Condensed"
 
@@ -29,6 +29,36 @@ qsLenFrac_DF <- readRDS(paste0(viridic_out, "/fractqslen_MA.RDS"))
 qFracAlig_DF <- readRDS(paste0(viridic_out, "/qFractAlign_MA.RDS"))
 sFracAlig_DF <- readRDS(paste0(viridic_out, "/sFractAlign_MA.RDS"))
 len_DF <- readRDS(paste0(viridic_out, "/len_DF.RDS"))
+
+# Create a mapping from accession numbers to full genome names
+genome_name_mapping <- c(
+  "NC_025443.1_9NA" = "Salmonella phage 9NA (NC_025443)",
+  "NC_042062.1_SP-069" = "Salmonella phage SP069 (NC_042062)", 
+  "NC_047786.1_vB_SenS_Sasha" = "Salmonella phage vB_SenS_Sasha (NC_047786)",
+  "NC_071011_vB_KpnS-Carvaje" = "Klebsiella phage vB_KpnS-Carvaje (NC_071011)",  
+  "NC_041925_VB_PmiS-Isfahan" = "Proteus phage VB_PmiS-Isfahan (NC_041925)",
+  "TayeBlu(This_study)" = "TayeBlu (This study)",
+  "OR508996.1_Mulvp2" = "Enterobacter phage Mulvp2 (OR508996.1)",
+  "BK048414.1_ctumj2" = "Caudoviricetes sp. ctumj2 (BK048414.1)",
+  "MH622927.1_ctdc_1_MAG_M" = "Siphoviridae sp. ctdc_1_MAG_M (MH622927.1)"
+)
+
+# Apply the new names
+# For the similarity matrix
+new_names <- genome_name_mapping[rownames(sim_matrix_DF)]
+rownames(sim_matrix_DF) <- new_names
+colnames(sim_matrix_DF) <- new_names
+
+# For all other matrices
+rownames(qsLenFrac_DF) <- new_names
+colnames(qsLenFrac_DF) <- new_names
+rownames(qFracAlig_DF) <- new_names
+colnames(qFracAlig_DF) <- new_names
+rownames(sFracAlig_DF) <- new_names
+colnames(sFracAlig_DF) <- new_names
+
+# For the length dataframe, update the rownames
+rownames(len_DF) <- new_names
 
 # Convert to matrix
 sim_matrix_MA <- as.matrix(sim_matrix_DF)
@@ -60,7 +90,7 @@ col_Aligfrac_fun <- colorRamp2(breaks = alig_breaks, colors = alig_colors)
 create_heatmap <- function(font_family) {
   # ---- 3. Heatmap Annotation with Dendrogram ----
   ha <- HeatmapAnnotation(
-    'Genome length' = anno_barplot(len_DF$qlen, 
+    'Genome length (bp)' = anno_barplot(len_DF$qlen, 
                                    which = "column", 
                                    border = FALSE, 
                                    baseline = 0,
@@ -68,12 +98,12 @@ create_heatmap <- function(font_family) {
                                    height = unit(2, "cm")),   # Height of the barplot
     which = "col", 
     show_annotation_name = TRUE, 
-    annotation_name_rot = 0,  # Make the name horizontal
+    annotation_name_rot = 90,  # Make the name horizontal
     annotation_name_gp = gpar(fontfamily = font_family),
     annotation_height = unit(2, "cm"),  # Total height of annotation including label
     gap = unit(1, "cm"),  # Gap between annotation and heatmap
-    annotation_name_side = "right",  # Position label on right side
-    annotation_name_offset = unit(0.1, "cm")  # Distance of label from annotation
+    annotation_name_side = "left",  # Position label on right side
+    annotation_name_offset = unit(1.2, "cm")  # Distance of label from annotation
   )
   
   # ---- 4. Combine dendrogram with heatmap ----
@@ -86,8 +116,8 @@ create_heatmap <- function(font_family) {
     show_heatmap_legend = FALSE, 
     
     # Apply font to row and column names
-    row_names_gp = gpar(fontsize = 10, fontfamily = font_family),
-    column_names_gp = gpar(fontsize = 10, fontfamily = font_family),
+    row_names_gp = gpar(fontsize = 9.5, fontfamily = font_family),
+    column_names_gp = gpar(fontsize = 9.5, fontfamily = font_family),
     
     cluster_rows = dend_row,    # Use dendrogram
     cluster_columns = dend_col, # Use dendrogram
@@ -173,10 +203,10 @@ create_legends <- function(font_family) {
 }
 
 # ---- 6. Save the plot ----
-# Calculate appropriate dimensions
+# Calculate appropriate dimensions 
 num_char <- max(nchar(colnames(sim_matrix_DF)))
-ht_width <- max(7, 0.5 * ncol(sim_matrix_DF))
-ht_height <- max(7, 0.5 * nrow(sim_matrix_DF))
+ht_width <- max(9, 0.7 * ncol(sim_matrix_DF))  
+ht_height <- max(9, 0.7 * nrow(sim_matrix_DF))
 
 # ---- Create PNG with Avenir Next Condensed Bold font ----
 # Create heatmap and legends
@@ -206,7 +236,7 @@ dev.off()
 
 #######
 # For the combined legends version
-png("viridic_with_dendrogram_side_combined.png", width = ht_width*1200, height = ht_height*800, res = 1000)
+png("viridic_with_dendrogram_side_combined.png", width = ht_width*1200, height = ht_height*800, res = 1050)
 
 # Create stacked vertical legends
 stacked_legends <- packLegend(
